@@ -1,0 +1,12 @@
+{
+  "name": "Eric",
+  "displayName": "Eric",
+  "expo": {
+    "name": "Eric",
+    "slug": "Eric",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
