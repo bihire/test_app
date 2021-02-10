@@ -26,7 +26,7 @@ sequelize
     });
 
 
-export default app.listen(PORT, () => { console.log(`port listening on port ${PORT}`) });
+export default app.listen(PORT, '0.0.0.0', () => { console.log(`port listening on port ${PORT}`) });
 
 // import express from 'express'
 // const app = express()
