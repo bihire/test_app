@@ -1,0 +1,51 @@
+// body, html, #root {
+//     height: 100vh;
+// }
+.MainEntry {
+    height: 100vh;
+    &_header_image {
+        height: 200px;
+        // background: blue;
+    }
+    &_container {
+        margin: auto;
+        max-width: 600px;
+        width: 90%;
+        padding: 40px 20px;
+        min-height: 100vh;
+        &_title {
+            font-size: 200%;
+            margin-bottom: 70px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+        }
+    }
+}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:100px;
+	background-color: #A07DBF;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+	position: relative;
+}
+
+.float_div {
+    position: absolute;
+                width: fit-content;
+                height: fit-content;
+                font-size: 150%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -45%);
+
+}
