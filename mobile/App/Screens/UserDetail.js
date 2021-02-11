@@ -1,23 +1,9 @@
 import React from 'react';
 import { View, StyleSheet, ImageBackground, Text } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 
-
-const Separator = () => (
-    <View style={{ height: 2 }} />
-)
-
-
-const Name = ({ data }) => {
-
-    return (
-        <View>
-            <Text>{data}</Text>
-        </View>
-    )
-}
-
-function UserDetail({ route }) {
+function UserDetail({ route, navigation }) {
     const { user } = route.params;
     return (
         <View style={styles.container}>
@@ -44,6 +30,12 @@ function UserDetail({ route }) {
                     <Text style={styles.name}>Phone: {user.phone_number}</Text>
                 </View>
 
+                <TouchableWithoutFeedback onPress={() => navigation.replace('Login')}>
+                    <View style={[styles.list, styles.logout]}>
+                        <Text style={styles.name}>LOGOUT</Text>
+                    </View>
+                </TouchableWithoutFeedback>
+
             </View>
         </View>
     );
@@ -63,6 +55,11 @@ const styles = StyleSheet.create({
         borderColor: "rgba(0, 0, 0, 0.46)",
         borderWidth: 0.2,
         marginVertical: 1
+    }, logout: {
+        marginTop: 15,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#4a4a4a",
     }
 })
 
