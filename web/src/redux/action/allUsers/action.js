@@ -1,6 +1,5 @@
 // import jwtDecode from 'jwt-decode';
 import swal from 'sweetalert';
-import history from '../../../utils/history';
 import { ALL_SUCCESS, ALL_FAILURE, ALL_START } from './action_type';
 import { axiosCall } from '../../../services/httpservice';
 
@@ -23,7 +22,7 @@ export const allAction = () => async (dispatch) => {
     dispatch(allStart());
     try {
         // const { email, password } = data;
-        const response = await axiosCall.get('/auth/details');
+        const response = await axiosCall.get('/auth/users');
         dispatch(successAll(response.data.data))
         
     } catch (error) {
