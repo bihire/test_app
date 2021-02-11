@@ -19,7 +19,7 @@ const Register = ({ navigation }) => {
     const addUser = async data => {
         try {
             const responce = await AddUserApi(data);
-            if (responce.data.status == 201) navigation.navigate('List');
+            if (responce.data.status == 201) navigation.replace('List');
         } catch (error) {
             console.log("Errrrorrrr", error);
         }

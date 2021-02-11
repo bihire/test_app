@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-BASE_URL = "http://192.168.43.240:5000";
+BASE_URL = "https://mvind-test-app.herokuapp.com";
 
 const ListUserApi = async () => {
     return await axios.get(`${BASE_URL}/api/auth/users`).catch();
