@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { FaHome } from 'react-icons/fa'
 
 import './story_card.scss'
 
