@@ -3,30 +3,30 @@ import { FaHome } from 'react-icons/fa'
 
 import './story_card.scss'
 
-const StoryCard = () => {
+const StoryCard = (user) => {
     return (
         <div>
             <div className='storyCard'>
                 <div className='storyCard_left'>
                     <div className='storyCard_left_img-container'>
                         <div className='storyCard_left_img-container_char'>
-                            b
+                            {user.user.first_name[0]}
                 </div>
                     </div>
                 </div>
                 <div className='storyCard_right'>
                     <div className='storyCard_right_title'>
-                        bihire boris - <span className='storyCard_right_time'>
-                            9 hours ago
+                        {user.user.first_name} {user.user.last_name} - <span className='storyCard_right_time'>
+                            {/* 9 hours ago */}
                         </span>
                     </div>
 
                     <div className='storyCard_right_field'>
                         <div className='storyCard_right_field_email'>
-                            bihire@gmail.com
+                            {user.user.email}
                         </div>
                         <div className='storyCard_right_field_phone'>
-                            +250787104604
+                            {user.user.phone_number}
                         </div>
                     </div>
 

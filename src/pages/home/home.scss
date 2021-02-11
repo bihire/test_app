@@ -44,8 +44,33 @@
                 width: fit-content;
                 height: fit-content;
                 font-size: 150%;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -45%);
+                top: 14%;
+                left: 22%;
+                // transform: translate(-50%, -50%);
+                &_container{
+                    position: relative;
+                    &_icon{
+                        position: absolute;
+                        transition: transform .25s;
+                        opacity: 1;
+                        cursor: pointer;
+                        font-size: 1.7em;
+                        font-family: serif;
+                        line-height: 1;
+                        background: none;
+                    }
+                    &_icon:before{
+                        content: "+";
+                    }
+                    &_icon_close{
+                        opacity: 1;
+	                    transform: rotate(45deg);
+                    }
+                }
+
+}
+
+.float_div_open {
+      transform: translate(-50%, -40%) rotate(90deg);
 
 }

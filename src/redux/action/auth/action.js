@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode';
-// import swal from 'sweetalert';
+import swal from 'sweetalert';
 import history from '../../../utils/history';
 import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_START } from './action_types';
 import { axiosCall } from '../../../services/httpservice';
@@ -30,17 +30,22 @@ export const loginAction = (data) => async (dispatch) => {
         const { token } = response.data.data;
         localStorage.setItem('barefoot_nomad_token', token);
         await dispatch(successLogin(jwtDecode(token)));
-        console.log(response.data.data);
-        // history.push('/dashboard');
+        history.push('/home');
+        swal({
+            title: 'Successfully loggedIN',
+            text: `welcome`,
+            icon: 'success',
+            timer: 3000,
+            buttons: false,
+        });
     } catch (error) {
-        console.log(error);
-        // swal({
-        //     title: 'Login error',
-        //     text: `${error.response.data.message}`,
-        //     icon: 'error',
-        //     timer: 3000,
-        //     buttons: false,
-        // });
+        swal({
+            title: 'Login error',
+            text: `${error.response.data.message}`,
+            icon: 'error',
+            timer: 3000,
+            buttons: false,
+        });
         return dispatch(LoginError(error.response.data));
     }
 };
