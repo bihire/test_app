@@ -6,7 +6,7 @@ export default class UserController {
 
     static async viewUsers(req, res) {
         try {
-            const data = await User.findAll({ raw: true, attributes: { exclude: ['updatedAt', 'password'] } });
+            const data = await User.findAll({ raw: true, attributes: { exclude: ['updatedAt', 'password'] }, order: [['createdAt', 'DESC']] });
 
             return res.status(200).send({
                 msg: "User Data",

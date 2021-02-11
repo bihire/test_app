@@ -63,9 +63,6 @@ const Separator = () => (
 )
 
 const ListUser = ({ navigation }) => {
-    // console.disableYellowBox = true; 
-
-    LogBox.ignoreAllLogs();
 
     const [list, setList] = useState([]);
     const [refreshing, setRefreshing] = useState(false);

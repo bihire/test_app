@@ -4,7 +4,7 @@ import axios from 'axios';
 BASE_URL = "http://192.168.43.240:5000";
 
 const ListUserApi = async () => {
-    return await axios.get(`${BASE_URL}/api/auth/details`).catch();
+    return await axios.get(`${BASE_URL}/api/auth/users`).catch();
 }
 
 const AddUserApi = async (data) => {
