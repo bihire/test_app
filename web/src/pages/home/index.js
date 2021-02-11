@@ -19,10 +19,6 @@ function Home (props) {
             setIsOpen(!modalIsOpen);
         }
 
-        function afterOpenModal() {
-            // references are now sync'd and can be accessed.
-            subtitle.style.color = '#f00';
-        }
         return (
             <div className="MainEntry">
                 <div className="MainEntry">
