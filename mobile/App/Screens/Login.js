@@ -1,40 +1,81 @@
-import React from 'react';
-import { View, StyleSheet, Text, TextInput, ImageBackground } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Text, TextInput, ImageBackground, Button, TouchableOpacity } from 'react-native';
 
-import Screen from './Screen';
+import { useForm, Controller } from 'react-hook-form';
 
+const Login = ({ navigation }) => {
+    const { handleSubmit, errors, control } = useForm();
+    const [authError, setAuthError] = useState(null);
 
-const Login = () => {
+    const onSubmit = ({ email, password }, navigation) => {
+        if (email != 'peter@mail.com' || password != '123') {
+            setAuthError('email or password does not exist');
+        }
+        navigation.replace('List');
+    }
+
     return (
-        <Screen style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.logo}>
                 <Text style={
                     styles.textLogo
                 }>TEST APP</Text>
             </View>
+            <Text style={styles.error}>{authError != '' ? authError : ''}</Text>
+
             <View style={styles.emailView}>
-                <TextInput
-                    placeholder="Email"
-                    style={{ height: '100%', width: "98%", color: "black", fontSize: 20 }}
+                <Controller
+                    name="email"
+                    control={control}
+                    rules={{ required: true }}
+                    defaultValue=''
+                    render={(props) => (
+                        <TextInput
+                            {...props}
+                            placeholder="Email"
+                            style={{ height: '100%', width: "98%", color: "black", fontSize: 20 }}
+                            onChangeText={(value) => { props.onChange(value) }}
+                            defaultValue={props.defaultValue}
+                            keyboardType="email-address"
+                        />
+                    )}
                 />
             </View>
             <View style={styles.passwordView}>
-                <TextInput
-                    secureTextEntry
-                    placeholder="Password"
-                    style={{ height: '100%', width: "98%", color: "black", fontSize: 20 }}
+                <Controller
+                    control={control}
+                    name="password"
+                    rules={{ required: true }}
+                    defaultValue=''
+                    render={(props) => (
+                        <TextInput
+                            {...props}
+                            secureTextEntry
+                            placeholder="Password"
+                            style={{ height: '100%', width: "98%", color: "black", fontSize: 20 }}
+                            onChangeText={(value) => { props.onChange(value) }}
+                            defaultValue={props.defaultValue}
+                        />
+                    )}
                 />
             </View>
-            <View style={styles.loginView}>
-                <Text style={styles.TextLogin}>LOGIN</Text>
-            </View>
-        </Screen>
+            <TouchableOpacity onPress={(data) => {
+                handleSubmit(onSubmit(data, navigation))
+            }}>
+                <View style={styles.loginView} >
+                    <Text style={styles.TextLogin}>LOGIN</Text>
+                </View>
+            </TouchableOpacity>
+        </View>
     )
 };
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "white",
+        flex: 1,
+        flexDirection: "column",
+        alignItems: "center"
     },
     logo: {
         marginTop: 100,
@@ -43,7 +84,7 @@ const styles = StyleSheet.create({
         marginBottom: 70,
     },
     textLogo: {
-        fontSize: 40,
+        fontSize: 60,
         textTransform: "uppercase",
         fontWeight: "bold",
         fontFamily: "monospace"
@@ -72,15 +113,17 @@ const styles = StyleSheet.create({
         height: 60,
         backgroundColor: "#4a4a4a",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "center"
     },
     TextLogin: {
         fontSize: 30,
         color: "white",
         textTransform: "capitalize",
-        fontFamily: "monospace"
+        fontFamily: "monospace",
+    },
+    error: {
+        color: 'red'
     }
-
 });
 
 

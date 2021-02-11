@@ -3,42 +3,47 @@ import { View, StyleSheet, Text, TextInput, ScrollView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import Screen from './Screen';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { AddUserApi } from '../Api/user';
-import { AntDesign } from '@expo/vector-icons'; 
+import { updateUserApi } from '../Api/user';
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
+const EditUser = ({ navigation, route }) => {
 
-const Register = ({ navigation }) => {
-    const [data, setData] = useState([]);
+    const { data } = route.params;
 
-    const { handleSubmit, errors, control } = useForm();
+    const { handleSubmit, errors, control } = useForm({
+        defaultValues: {
+            firstName: data.first_name
+        }
+    });
 
     const onSubmit = async (data) => {
-        await addUser(data);
+        console.log(data);
+        await editUser(data);
     }
 
-    const addUser = async data => {
+    const editUser = async (user) => {
         try {
-            const responce = await AddUserApi(data);
-            if (responce.data.status == 201) navigation.navigate('List');
+            const responce = await updateUserApi(user, data.id);
+            if (responce.status == 200) navigation.replace('List');
         } catch (error) {
-            console.log("Errrrorrrr", error);
+            console.log("Error in Edit", error);
         }
     }
 
     return (
         <ScrollView>
-        <Screen style={styles.container}>
-            <View style={styles.logo}>
-                    <AntDesign name="adduser" size={50} color="black" />
-            </View>
-            <View style={[styles.firstName, styles.common]}>
+            <Screen style={styles.container}>
+                <View style={styles.logo}>
+                    <MaterialCommunityIcons name="account-edit-outline" size={50} color="black" />
+                </View>
+                <View style={[styles.firstName, styles.common]}>
                     <Controller
                         control={control}
                         name="firstName"
-                        defaultValue=""
                         rules={{ required: true }}
+                        defaultValue={data.first_name}
                         render={(props) => (
-                        <TextInput
+                            <TextInput
                                 {...props}
                                 placeholder="firstname"
                                 style={{ height: '100%', width: "98%", color: "black", fontSize: 20 }}
@@ -47,32 +52,32 @@ const Register = ({ navigation }) => {
                             />
                         )}
                     />
-            </View>
-            <View style={[styles.lastName, styles.common]}>
+                </View>
+                <View style={[styles.lastName, styles.common]}>
                     <Controller
                         control={control}
                         name="lastName"
-                        defaultValue=""
+                        defaultValue={data.last_name}
                         rules={{ required: true }}
                         render={(props) => (
-                        <TextInput
+                            <TextInput
                                 {...props}
                                 placeholder="lastname"
-                            style={{ height: '100%', width: "98%", color: "black", fontSize: 20 }}
+                                style={{ height: '100%', width: "98%", color: "black", fontSize: 20 }}
                                 onChangeText={(value) => { props.onChange(value) }}
                                 defaultValue={props.defaultValue}
                             />
                         )}
                     />
-            </View>
-            <View style={[styles.Email, styles.common]}>
+                </View>
+                <View style={[styles.Email, styles.common]}>
                     <Controller
                         control={control}
                         name="email"
-                        defaultValue=""
+                        defaultValue={data.email}
                         rules={{ required: true }}
                         render={(props) => (
-                        <TextInput
+                            <TextInput
                                 {...props}
                                 placeholder="email"
                                 style={{ height: '100%', width: "98%", color: "black", fontSize: 20 }}
@@ -82,15 +87,15 @@ const Register = ({ navigation }) => {
                             />
                         )}
                     />
-            </View>
-            <View style={[styles.phone, styles.common]}>
+                </View>
+                <View style={[styles.phone, styles.common]}>
                     <Controller
                         control={control}
                         name="phoneNumber"
-                        defaultValue=""
+                        defaultValue={data.phone_number}
                         rules={{ required: true }}
                         render={(props) => (
-                        <TextInput
+                            <TextInput
                                 {...props}
                                 placeholder="phoneNumber"
                                 style={{ height: '100%', width: "98%", color: "black", fontSize: 20 }}
@@ -100,14 +105,14 @@ const Register = ({ navigation }) => {
                             />
                         )}
                     />
-            </View>
+                </View>
                 <TouchableWithoutFeedback onPress={handleSubmit(onSubmit)}>
                     <View style={styles.loginView}>
                         <Text style={styles.TextLogin}>SAVE</Text>
                     </View>
                 </TouchableWithoutFeedback>
 
-        </Screen>
+            </Screen>
         </ScrollView>
     )
 };
@@ -166,4 +171,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default Register;
+export default EditUser;

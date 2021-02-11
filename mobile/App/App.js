@@ -4,12 +4,12 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Login from './Screens/Login';
 import Register from './Screens/Register';
+import ListUser from './Screens/ListUser';
+import Navigation from './Screens/Navigation';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Login />
-    </View>
+    <Navigation />
   );
 }
 
