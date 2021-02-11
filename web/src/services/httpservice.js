@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const url = 'http://localhost:5000/api';
+export const url = 'https://mvind-test-app.herokuapp.com/api';
 
 export const axiosCall = axios.create({
     baseURL: url,
