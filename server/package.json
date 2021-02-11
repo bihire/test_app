@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "node_modules/.bin/nodemon ./server.js --exec babel-node --",
-    "start": "nodemon --exec babel-node ./server.js"
+    "start": "nodemon --exec babel-node ./server.js",
+    "heroku-prebuild": "rm -rf node_modules"
   },
   "repository": {
     "type": "git",
